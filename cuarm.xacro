@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="staubli">
+  <!-- math constants -->
+  <xacro:property name="pi" value="3.1415926535897931" />
+  <!-- staubli geometry files are in millimeters -->
+  <xacro:property name="staubli_scale" value="0.001 0.001 0.001" />
+
+  <!-- named paths -->
+  <xacro:property name="staubli_geom_path" value="/home/armuser/ros/trajectory_planner/models"/>
+
+
+  <!-- link macro -->
+  <xacro:macro name="link_macro" params="link_name link_num origin">
+    <link name="${link_name}">      
+    <visual>
+      <geometry>
+	${origin}
+	<mesh filename="file:${staubli_geom_path}/staubli_${link_num}.dae" scale="${staubli_scale}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+	${origin}
+	<mesh filename="file:${staubli_geom_path}/staubli_${link_num}.dae" scale="${staubli_scale}"/>
+      </geometry>
+    </collision>
+  </link>
+  </xacro:macro>
+
+    <!-- Colors -->
+    <xacro:macro name="color_blue">
+        <material name="blue">
+            <color rgba="0 0 0.75 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_yellow">
+        <material name="yellow">
+            <color rgba="0.75 0.75 0 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_red_green">
+        <material name="red_green">
+            <color rgba="1.0 1.0 0 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_black">
+        <material name="black">
+            <color rgba="0.1 0.1 0.1 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_dark_gray">
+        <material name="dark_gray">
+            <color rgba="0.3 0.3 0.3 1.0" />
+        </material>
+    </xacro:macro>
+    
+    <xacro:macro name="color_gray">
+        <material name="gray">
+            <color rgba="0.5 0.5 0.5 1.0" />
+        </material>
+    </xacro:macro>
+    
+    <xacro:macro name="color_silver">
+        <material name="silver">
+            <color rgba="0.9 0.9 0.9 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_green">
+        <material name="green">
+            <color rgba="0 0.75 0.1 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_olive">
+        <material name="olive">
+            <color rgba="0.5 0.5 0 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_orange">
+        <material name="orange">
+            <color rgba="1.0 0.65 0 1.0" />
+        </material>
+    </xacro:macro>
+    
+    <xacro:macro name="color_aqua">
+        <material name="aqua">
+            <color rgba="0.25 0.3 0 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_dark_purple">
+        <material name="dark_purple">
+            <color rgba="0.3 0 0.3 1.0" />
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="color_magenta">
+        <material name="magenta">
+            <color rgba="1.0 0 1.0 0.5" />
+        </material>
+    </xacro:macro>
+    
+    <!-- useful macros -->
+    <xacro:macro name="prism" params="name x y z *color">
+        <link name="${name}">
+            <visual>
+                <geometry>
+                    <box size="${x} ${y} ${z}" />
+                </geometry>
+                <xacro:insert_block name="color" />
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${x} ${y} ${z}" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="cyl" params="name radius length *color">
+        <link name="${name}">
+            <visual>
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}" />
+                </geometry>
+                <xacro:insert_block name="color" />
+            	<origin rpy="0 0 0" xyz="0 0 ${length/2}" />
+	    </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+    <xacro:cyl name="base_link" radius="0.02" length="0.0">
+        <xacro:color_gray />
+    </xacro:cyl>
+
+    <xacro:prism name="base_box" x="0.09" y="0.14" z="0.14">
+        <xacro:color_yellow />
+    </xacro:prism>
+
+    <xacro:prism name="first_link" x=".09" y="0.14" z="0.15">
+	<xacro:color_yellow />
+    </xacro:prism>
+	
+    <xacro:cyl name="second_link" radius=".02" length="0.0">
+	<xacro:color_gray />
+    </xacro:cyl>
+
+    <xacro:cyl name="third_link" radius=".02" length="0.3">
+	<xacro:color_gray />
+    </xacro:cyl>
+
+    <xacro:prism name="elbow_link" x=".1" y=".2" z=".1">
+	<xacro:color_gray />
+    </xacro:prism>
+
+    <xacro:cyl name="fourth_link" radius=".02" length="0.3">
+	<xacro:color_gray />
+    </xacro:cyl>
+
+    <xacro:prism name="wrist_link" x=".1" y=".1" z=".1">
+	<xacro:color_gray />
+    </xacro:prism>
+
+    <xacro:cyl name="differential" radius=".02" length="0.0">
+	<xacro:color_gray />
+    </xacro:cyl>
+
+
+    <xacro:cyl name="fifth_link" radius=".01" length="0.05">
+	<xacro:color_gray />
+    </xacro:cyl>
+
+
+    <joint name="base_joint" type="fixed">
+        <origin xyz="0 0 0.07" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="base_box" />
+    </joint>
+
+    <joint name="joint1" type="revolute">
+        <origin xyz="0 0 0.145" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <parent link="base_box" />
+        <child link="first_link" />
+        <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+    
+    <joint name="joint2" type="revolute">
+	<origin xyz="0 0 0.075" rpy="0 0 0" />
+	<axis xyz="0 1 0" />
+	<parent link="first_link" />
+	<child link="second_link" />
+	<limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+
+    <joint name="joint3" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<axis xyz="0 0 1" />
+	<parent link="second_link" />
+	<child link="third_link" />
+	<limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+
+    <joint name="elbow_joint" type="fixed">
+	<origin xyz="0 0.05 0.35" rpy="0 0 0" />
+	<parent link="third_link" />
+	<child link="elbow_link" />
+    </joint>
+
+    <joint name="joint4" type="revolute">
+	<origin xyz="0 0.05 0.05" rpy="0 0 0" />
+	<axis xyz="1 0 0" />
+	<parent link="elbow_link" />
+	<child link="fourth_link" />
+	<limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+
+    <joint name="joint5" type="revolute">
+	<origin xyz="0 0 .3" rpy="0 0 0" />
+	<axis xyz="0 0 1" />
+	<parent link="fourth_link" />
+	<child link="wrist_link" />
+	<limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+ 
+    <joint name="joint6" type="revolute">
+	<origin xyz="0 0 0.05" rpy="0 0 0" />
+	<axis xyz="0 1 0" />
+	<parent link="wrist_link" />
+	<child link="differential" />
+	<limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+
+    <joint name="joint7" type="revolute">
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<axis xyz="0 0 1" />
+	<parent link="differential" />
+	<child link="fifth_link" />
+	<limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/>
+    </joint>
+
+
+
+
+</robot>
+
+
