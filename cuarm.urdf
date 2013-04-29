@@ -24,206 +24,347 @@
       <geometry>
         <cylinder length="0.0" radius="0.02"/>
       </geometry>
-    </collision>
-  </link>
-  <link name="base_box">
-    <visual>
-      <geometry>
-        <box size="0.09 0.14 0.14"/>
-      </geometry>
-      <material name="yellow">
-        <color rgba="0.75 0.75 0 1.0"/>
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.09 0.14 0.14"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="first_link">
-    <visual>
-      <geometry>
-        <box size="0.09 0.14 0.15"/>
-      </geometry>
-      <material name="yellow">
-        <color rgba="0.75 0.75 0 1.0"/>
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.09 0.14 0.15"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="second_link">
-    <visual>
-      <geometry>
-        <cylinder length="0.0" radius="0.02"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="0.0" radius="0.02"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="third_link">
-    <visual>
-      <geometry>
-        <cylinder length="0.3" radius="0.02"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
-      <origin rpy="0 0 0" xyz="0 0 0.15"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="0.3" radius="0.02"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="elbow_link">
-    <visual>
-      <geometry>
-        <box size="0.1 0.2 0.1"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.1 0.2 0.1"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="fourth_link">
-    <visual>
-      <geometry>
-        <cylinder length="0.3" radius="0.02"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
-      <origin rpy="0 0 0" xyz="0 0 0.15"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="0.3" radius="0.02"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="wrist_link">
-    <visual>
-      <geometry>
-        <box size="0.1 0.1 0.1"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
-    </visual>
-    <collision>
-      <geometry>
-        <box size="0.1 0.1 0.1"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="differential">
-    <visual>
-      <geometry>
-        <cylinder length="0.0" radius="0.02"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
-      <origin rpy="0 0 0" xyz="0 0 0.0"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="0.0" radius="0.02"/>
-      </geometry>
-    </collision>
-  </link>
-  <link name="fifth_link">
-    <visual>
-      <geometry>
-        <cylinder length="0.05" radius="0.01"/>
-      </geometry>
-      <material name="gray">
-        <color rgba="0.5 0.5 0.5 1.0"/>
-      </material>
-      <origin rpy="0 0 0" xyz="0 0 0.025"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="0.05" radius="0.01"/>
-      </geometry>
     </collision>
   </link>
   <joint name="base_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.07"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="base_link"/>
     <child link="base_box"/>
   </joint>
-  <joint name="joint1" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0.145"/>
+  <link name="base_box">
+    <visual>
+      <geometry>
+        <box size="0.14 0.2 0.085"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.75 0.75 0 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.0425"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.14 0.2 0.085"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0425"/>
+    </collision>
+  </link>
+  <joint name="base_rotate" type="revolute">
+    <origin rpy="0 0 0" xyz="0.025 0 0.085"/>
     <axis xyz="0 0 1"/>
     <parent link="base_box"/>
-    <child link="first_link"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <child link="carbon_fiber_link"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
   </joint>
-  <joint name="joint2" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0.075"/>
-    <axis xyz="0 1 0"/>
-    <parent link="first_link"/>
-    <child link="second_link"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+  <link name="carbon_fiber_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.14" radius="0.02"/>
+      </geometry>
+      <material name="dark_gray">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.07"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.14" radius="0.02"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.07"/>
+    </collision>
+  </link>
+  <joint name="fixed_link_to_elbow" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.14"/>
+    <parent link="carbon_fiber_link"/>
+    <child link="elbow_link_vertical"/>
   </joint>
-  <joint name="joint3" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <parent link="second_link"/>
-    <child link="third_link"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+  <link name="elbow_link_vertical">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.2"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.75 0.75 0 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.2"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+    </collision>
+  </link>
+  <joint name="fixed_elbow_internal" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.05 0.10"/>
+    <parent link="elbow_link_vertical"/>
+    <child link="elbow_link_horizontal"/>
   </joint>
-  <joint name="elbow_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.05 0.35"/>
-    <parent link="third_link"/>
-    <child link="elbow_link"/>
-  </joint>
-  <joint name="joint4" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0.05 0.05"/>
+  <link name="elbow_link_horizontal">
+    <visual>
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.75 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.2 0.1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </collision>
+  </link>
+  <joint name="elbow_lift" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0.05 0.10"/>
     <axis xyz="1 0 0"/>
-    <parent link="elbow_link"/>
-    <child link="fourth_link"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <parent link="elbow_link_horizontal"/>
+    <child link="carbon_fiber_link_2"/>
+    <limit effort="1.0" lower="-2.09" upper="0.52" velocity="0.95"/>
   </joint>
-  <joint name="joint5" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 .3"/>
+  <link name="carbon_fiber_link_2">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.02"/>
+      </geometry>
+      <material name="dark_gray">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.02"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </collision>
+  </link>
+  <joint name="fixed_link_to_wrist" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.10"/>
+    <parent link="carbon_fiber_link_2"/>
+    <child link="wrist_base_link"/>
+  </joint>
+  <link name="wrist_base_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.75 0.75 0 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </collision>
+  </link>
+  <joint name="wrist_rotate" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.10"/>
     <axis xyz="0 0 1"/>
-    <parent link="fourth_link"/>
-    <child link="wrist_link"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <parent link="wrist_base_link"/>
+    <child link="differential_link"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
   </joint>
-  <joint name="joint6" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0.05"/>
-    <axis xyz="0 1 0"/>
-    <parent link="wrist_link"/>
-    <child link="differential"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+  <link name="differential_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.15"/>
+      </geometry>
+      <material name="olive">
+        <color rgba="0.5 0.5 0 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.15"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+    </collision>
+  </link>
+  <joint name="differential_rotate" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.105"/>
+    <axis xyz="0 0 1"/>
+    <parent link="differential_link"/>
+    <child link="diff_crossbar"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
   </joint>
-  <joint name="joint7" type="revolute">
+  <link name="diff_crossbar">
+    <visual>
+      <geometry>
+        <box size="0.0 0.0 0.0"/>
+      </geometry>
+      <material name="olive">
+        <color rgba="0.5 0.5 0 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.0 0.0 0.0"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </collision>
+  </link>
+  <joint name="differential_lift" type="revolute">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <parent link="differential"/>
-    <child link="fifth_link"/>
-    <limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <axis xyz="1 0 0"/>
+    <parent link="diff_crossbar"/>
+    <child link="gripper_connect_link"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
   </joint>
+  <link name="gripper_connect_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.045" radius="0.005"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.0225"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.045" radius="0.005"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0225"/>
+    </collision>
+  </link>
+  <joint name="fixed_link_to_gripper" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.045"/>
+    <parent link="gripper_connect_link"/>
+    <child link="gripper_frame"/>
+  </joint>
+  <link name="gripper_frame">
+    <visual>
+      <geometry>
+        <box size="0.085 0.075 0.15"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.75 0.75 0 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.085 0.075 0.15"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+    </collision>
+  </link>
+  <joint name="fixed_link_to_hand" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+    <parent link="gripper_frame"/>
+    <child link="gripper_hand"/>
+  </joint>
+  <link name="gripper_hand">
+    <visual>
+      <geometry>
+        <cylinder length="0.17" radius="0.04"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 0.75 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.085"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.17" radius="0.04"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.085"/>
+    </collision>
+  </link>
+  <!-- <xacro:prism name="first_link" x=".09" y="0.14" z="0.15"> -->
+  <!--     <xacro:color_yellow /> -->
+  <!-- </xacro:prism> -->
+  <!-- <xacro:cyl name="second_link" radius=".02" length="0.0"> -->
+  <!--     <xacro:color_gray /> -->
+  <!-- </xacro:cyl> -->
+  <!-- <xacro:cyl name="third_link" radius=".02" length="0.3"> -->
+  <!--     <xacro:color_gray /> -->
+  <!-- </xacro:cyl> -->
+  <!-- <xacro:prism name="elbow_link" x=".1" y=".2" z=".1"> -->
+  <!--     <xacro:color_yellow /> -->
+  <!-- </xacro:prism> -->
+  <!-- <xacro:cyl name="fourth_link" radius=".02" length="0.3"> -->
+  <!--     <xacro:color_gray /> -->
+  <!-- </xacro:cyl> -->
+  <!-- <xacro:prism name="wrist_link" x=".1" y=".1" z=".1"> -->
+  <!--     <xacro:color_gray /> -->
+  <!-- </xacro:prism> -->
+  <!-- <xacro:cyl name="differential" radius=".02" length="0.0"> -->
+  <!--     <xacro:color_gray /> -->
+  <!-- </xacro:cyl> -->
+  <!-- <xacro:cyl name="fifth_link" radius=".01" length="0.05"> -->
+  <!--     <xacro:color_gray /> -->
+  <!-- </xacro:cyl> -->
+  <!-- <xacro:prism name="gripper" x=".06" y=".04" z=".1"> -->
+  <!--     <xacro:color_blue /> -->
+  <!-- </xacro:prism> -->
+  <!-- <joint name="joint1" type="revolute"> -->
+  <!--     <origin xyz="0 0 0.145" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 0 1" /> -->
+  <!--     <parent link="base_box" /> -->
+  <!--     <child link="first_link" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint2" type="revolute"> -->
+  <!--     <origin xyz="0 0 0.075" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 1 0" /> -->
+  <!--     <parent link="first_link" /> -->
+  <!--     <child link="second_link" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint3" type="revolute"> -->
+  <!--     <origin xyz="0 0 0" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 0 1" /> -->
+  <!--     <parent link="second_link" /> -->
+  <!--     <child link="third_link" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="elbow_joint" type="fixed"> -->
+  <!--     <origin xyz="0 0.05 0.35" rpy="0 0 0" /> -->
+  <!--     <parent link="third_link" /> -->
+  <!--     <child link="elbow_link" /> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint4" type="revolute"> -->
+  <!--     <origin xyz="0 0.05 0.05" rpy="0 0 0" /> -->
+  <!--     <axis xyz="1 0 0" /> -->
+  <!--     <parent link="elbow_link" /> -->
+  <!--     <child link="fourth_link" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint5" type="revolute"> -->
+  <!--     <origin xyz="0 0 .3" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 0 1" /> -->
+  <!--     <parent link="fourth_link" /> -->
+  <!--     <child link="wrist_link" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint6" type="revolute"> -->
+  <!--     <origin xyz="0 0 0.05" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 1 0" /> -->
+  <!--     <parent link="wrist_link" /> -->
+  <!--     <child link="differential" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint7" type="revolute"> -->
+  <!--     <origin xyz="0 0 0" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 0 1" /> -->
+  <!--     <parent link="differential" /> -->
+  <!--     <child link="fifth_link" /> -->
+  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
+  <!-- </joint> -->
+  <!-- <joint name="joint8" type="fixed"> -->
+  <!--     <origin xyz="0 0 0.05" rpy="0 0 0" /> -->
+  <!--     <axis xyz="0 0 1" /> -->
+  <!--     <parent link="fifth_link" /> -->
+  <!--     <child link="gripper" /> -->
+  <!-- </joint> -->
 </robot>
 
