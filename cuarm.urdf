@@ -54,7 +54,7 @@
     <axis xyz="0 0 1"/>
     <parent link="base_box"/>
     <child link="carbon_fiber_link"/>
-    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.3"/>
   </joint>
   <link name="carbon_fiber_link">
     <visual>
@@ -122,7 +122,7 @@
     <axis xyz="1 0 0"/>
     <parent link="elbow_link_horizontal"/>
     <child link="carbon_fiber_link_2"/>
-    <limit effort="1.0" lower="-2.09" upper="0.52" velocity="0.95"/>
+    <limit effort="1.0" lower="-2.09" upper="0.52" velocity="0.3"/>
   </joint>
   <link name="carbon_fiber_link_2">
     <visual>
@@ -168,7 +168,7 @@
     <axis xyz="0 0 1"/>
     <parent link="wrist_base_link"/>
     <child link="differential_link"/>
-    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.3"/>
   </joint>
   <link name="differential_link">
     <visual>
@@ -192,7 +192,7 @@
     <axis xyz="0 0 1"/>
     <parent link="differential_link"/>
     <child link="diff_crossbar"/>
-    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.3"/>
   </joint>
   <link name="diff_crossbar">
     <visual>
@@ -216,7 +216,7 @@
     <axis xyz="1 0 0"/>
     <parent link="diff_crossbar"/>
     <child link="gripper_connect_link"/>
-    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.95"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.3"/>
   </joint>
   <link name="gripper_connect_link">
     <visual>
@@ -279,92 +279,5 @@
       <origin rpy="0 0 0" xyz="0 0 0.085"/>
     </collision>
   </link>
-  <!-- <xacro:prism name="first_link" x=".09" y="0.14" z="0.15"> -->
-  <!--     <xacro:color_yellow /> -->
-  <!-- </xacro:prism> -->
-  <!-- <xacro:cyl name="second_link" radius=".02" length="0.0"> -->
-  <!--     <xacro:color_gray /> -->
-  <!-- </xacro:cyl> -->
-  <!-- <xacro:cyl name="third_link" radius=".02" length="0.3"> -->
-  <!--     <xacro:color_gray /> -->
-  <!-- </xacro:cyl> -->
-  <!-- <xacro:prism name="elbow_link" x=".1" y=".2" z=".1"> -->
-  <!--     <xacro:color_yellow /> -->
-  <!-- </xacro:prism> -->
-  <!-- <xacro:cyl name="fourth_link" radius=".02" length="0.3"> -->
-  <!--     <xacro:color_gray /> -->
-  <!-- </xacro:cyl> -->
-  <!-- <xacro:prism name="wrist_link" x=".1" y=".1" z=".1"> -->
-  <!--     <xacro:color_gray /> -->
-  <!-- </xacro:prism> -->
-  <!-- <xacro:cyl name="differential" radius=".02" length="0.0"> -->
-  <!--     <xacro:color_gray /> -->
-  <!-- </xacro:cyl> -->
-  <!-- <xacro:cyl name="fifth_link" radius=".01" length="0.05"> -->
-  <!--     <xacro:color_gray /> -->
-  <!-- </xacro:cyl> -->
-  <!-- <xacro:prism name="gripper" x=".06" y=".04" z=".1"> -->
-  <!--     <xacro:color_blue /> -->
-  <!-- </xacro:prism> -->
-  <!-- <joint name="joint1" type="revolute"> -->
-  <!--     <origin xyz="0 0 0.145" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 0 1" /> -->
-  <!--     <parent link="base_box" /> -->
-  <!--     <child link="first_link" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint2" type="revolute"> -->
-  <!--     <origin xyz="0 0 0.075" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 1 0" /> -->
-  <!--     <parent link="first_link" /> -->
-  <!--     <child link="second_link" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint3" type="revolute"> -->
-  <!--     <origin xyz="0 0 0" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 0 1" /> -->
-  <!--     <parent link="second_link" /> -->
-  <!--     <child link="third_link" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="elbow_joint" type="fixed"> -->
-  <!--     <origin xyz="0 0.05 0.35" rpy="0 0 0" /> -->
-  <!--     <parent link="third_link" /> -->
-  <!--     <child link="elbow_link" /> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint4" type="revolute"> -->
-  <!--     <origin xyz="0 0.05 0.05" rpy="0 0 0" /> -->
-  <!--     <axis xyz="1 0 0" /> -->
-  <!--     <parent link="elbow_link" /> -->
-  <!--     <child link="fourth_link" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint5" type="revolute"> -->
-  <!--     <origin xyz="0 0 .3" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 0 1" /> -->
-  <!--     <parent link="fourth_link" /> -->
-  <!--     <child link="wrist_link" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint6" type="revolute"> -->
-  <!--     <origin xyz="0 0 0.05" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 1 0" /> -->
-  <!--     <parent link="wrist_link" /> -->
-  <!--     <child link="differential" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint7" type="revolute"> -->
-  <!--     <origin xyz="0 0 0" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 0 1" /> -->
-  <!--     <parent link="differential" /> -->
-  <!--     <child link="fifth_link" /> -->
-  <!--     <limit lower="-1.57" upper="1.57" velocity="0.95" effort="0.0"/> -->
-  <!-- </joint> -->
-  <!-- <joint name="joint8" type="fixed"> -->
-  <!--     <origin xyz="0 0 0.05" rpy="0 0 0" /> -->
-  <!--     <axis xyz="0 0 1" /> -->
-  <!--     <parent link="fifth_link" /> -->
-  <!--     <child link="gripper" /> -->
-  <!-- </joint> -->
 </robot>
 
