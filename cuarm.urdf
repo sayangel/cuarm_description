@@ -279,5 +279,51 @@
       <origin rpy="0 0 0" xyz="0 0 0.085"/>
     </collision>
   </link>
+  <joint name="dummy_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.17"/>
+    <axis xyz="1 0 0"/>
+    <parent link="gripper_hand"/>
+    <child link="gripper_dummy_link"/>
+    <limit effort="1.0" lower="-1.57" upper="1.57" velocity="0.3"/>
+  </joint>
+  <link name="gripper_dummy_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.0" radius="0.03"/>
+      </geometry>
+      <material name="magenta">
+        <color rgba="1.0 0 1.0 0.5"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.0" radius="0.03"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+    </collision>
+  </link>
+  <joint name="fixed_link_to_tip" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="gripper_dummy_link"/>
+    <child link="gripper_tip"/>
+  </joint>
+  <link name="gripper_tip">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+      <material name="magenta">
+        <color rgba="1.0 0 1.0 0.5"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+    </collision>
+  </link>
 </robot>
 
